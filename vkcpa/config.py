@@ -1,6 +1,6 @@
 ID_APP = '5743942'
 
-SECRET_CODE = 'ZIeGEoMrKS6oJOHAC40F'
+SECRET_CODE = '**************'
 
 DOMAIN = 'livsa.ru'
 
