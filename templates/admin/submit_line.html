@@ -1,0 +1,25 @@
+{% load i18n admin_urls %}
+<div class=" text-center">
+<br />
+<div class="btn-group">
+{% if show_save %}
+<input class="btn btn-success btn-sm" type="submit" value="Сохранить" class="default" name="_save" />
+{% endif %}
+
+{% if show_save_as_new %}
+<input class="btn btn-default btn-sm" type="submit" value="Сохранить как новый" name="_saveasnew" />
+{%endif%}
+{% if show_save_and_add_another %}
+<input class="btn btn-default btn-sm" type="submit" value="Сохранить и добавить" name="_addanother" />
+{% endif %}
+<!--<div>
+{% if show_save_and_continue %}
+<input class="btn btn-default btn-sm" type="submit" value="Сохранить и править" name="_continue" />
+{% endif %}
+</div>-->
+{% if show_delete_link %}
+{% url opts|admin_urlname:'delete' original.pk|admin_urlquote as delete_url %}
+<a class="btn btn-danger btn-sm" href="{% add_preserved_filters delete_url %}" class="deletelink">Удалить</a>
+{% endif %}
+</div>
+</div>

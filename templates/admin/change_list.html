@@ -1,0 +1,87 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_urls admin_static admin_list %}
+{% block extrastyle %}
+{{ block.super }}
+{% if cl.formset or action_form %}
+    <script src="{% url 'admin:jsi18n' %}"></script>
+{% endif %}
+{{ media.css }}
+{% endblock %}
+{% block extrahead %}
+{{ block.super }}
+{{ media.js }}
+{% if action_form %}
+{% if actions_on_top or actions_on_bottom %}
+<script>(function($){$(document).ready(function($){$("tr input.action-select").actions();});})(django.jQuery);</script>
+{% endif %}
+{% endif %}
+{% endblock %}
+{% block bodyclass %}{{ block.super }}list{% endblock %}
+{% if not is_popup %}
+{% block breadcrumbs %}
+<div class="breadcrumb">
+<a href="{% url 'admin:index' %}">Главная</a>
+&rsaquo; <a href="{% url 'admin:app_list' app_label=cl.opts.app_label %}">{{ cl.opts.app_config.verbose_name }}</a>
+&rsaquo; {{ cl.opts.verbose_name_plural|capfirst }} [{{ cl.result_count }}]
+</div>
+{% endblock %}
+{% endif %}
+
+{% block coltype %}listIn{% endblock %}
+
+{% block content_title %}
+{% if title %}<h1>{{ cl.opts.verbose_name_plural|capfirst }}</h1>{% endif %}
+{% endblock %}
+{% block content %}
+  <div id="content-main">
+{% block object-tools %}
+{% if has_add_permission %}
+{% block object-tools-items %}
+   <div class="text-right">
+{% url cl.opts|admin_urlname:'add' as add_url %}
+     <a href="{% add_preserved_filters add_url is_popup to_field %}" class="btn btn-success btn-sm">Добавить</a>
+  </div><br />
+{% endblock %}
+
+{% endif %}
+{% endblock %}
+
+{% if cl.formset.errors %}
+ <div class="alert alert-danger">   
+{% if cl.formset.total_error_count == 1 %}
+Исправьте ошибку
+{% else %}
+Исправьте ошибки
+{% endif %}
+{{ cl.formset.non_form_errors }}
+</div>
+{% endif %}
+    <div class="module{% if cl.has_filters %} filtered{% endif %}" id="changelist">
+{% block search %}{% search_form cl %}{% endblock %}
+{% block date_hierarchy %}{% date_hierarchy cl %}{% endblock %}
+
+{% block filters %}
+{% if cl.has_filters %}
+          <!--<div id="changelist-filter">
+            <h2>Фильтр</h2>
+{% for spec in cl.filter_specs %}{% admin_list_filter cl spec %}{% endfor %}
+          </div>-->
+{% endif %}
+{% endblock %}
+   <form id="changelist-form" action="" method="post"{% if cl.formset.is_multipart %} enctype="multipart/form-data"{% endif %} novalidate role="form" class="form form-inline">
+{% csrf_token %}
+{% if cl.formset %}
+ <div>{{ cl.formset.management_form }}</div>
+{% endif %}
+{% block result_list %}
+{% if action_form and actions_on_top and cl.full_result_count %}{% admin_actions %}{% endif %}
+{% result_list cl %}
+{% if action_form and actions_on_bottom and cl.full_result_count %}{% admin_actions %}{% endif %}
+{% endblock %}
+{% block pagination %}
+{% pagination cl %}
+{% endblock %}
+  </form>
+ </div>
+</div>
+{% endblock %}

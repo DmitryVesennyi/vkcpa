@@ -1,0 +1,64 @@
+{% load static %}<!DOCTYPE html>
+<html lang="ru">
+ <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>-=Livsa RU=-</title>
+  <link href="{% static 'css/an4.css' %}" rel="stylesheet">
+  <link href="{% static 'img/favicon.ico' %}" rel="icon" type="image/x-icon" />
+  <link href="{% static 'img/favicon.ico' %}" rel="shortcut icon" />
+  <script src="//vk.com/js/api/openapi.js?136"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <script src="{% static 'js/an4.js' %}"></script>
+  <script src="https://apis.google.com/js/client.js"></script>
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+  <!--[if lt IE 9]>
+   <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+   <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+  <style>#toTop{display:none;text-decoration:none;position:fixed;bottom:52px;left:2px;overflow:hidden;width:51px;height:51px;border:none;text-indent:100%;background:url({% static 'img/top2.png' %}) no-repeat left top}#toTopHover{background:url({% static 'img/top2.png' %}) no-repeat left -51px;width:51px;height:51px;display:block;overflow:hidden;float:left;opacity:0;-moz-opacity:0;filter:alpha(opacity=0)}#toTop:active,#toTop:focus{outline:none}</style>
+ </head>
+ <body>
+ <nav class="navbar navbar-default navbar-fixed-top" id ="nav">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#mnx" aria-expanded="false">
+        <span class="sr-only">Nav</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    <h1 class="navbar-brand">Livsa.ru</h1>
+    </div>
+    <div class="collapse navbar-collapse" id="mnx">
+      <ul class="nav navbar-nav navbar-right">
+      <li ><a href="{% url 'home' %}" >Моя страница</a></li>
+      <li><a href="{% url 'pravila' %}">Правила</a></li>
+      <li><a href="{% url 'kak_popast' %}">Повторное участие</a></li>
+      <li><a href="{% url 'partneram' %}">Партнерам</a></li>
+      <li>
+	  <form action="{% url 'exit' %}" method="post" style="color:#fff;float:right">
+{% csrf_token %}
+	  <input type="hidden" name="exit" value="0" />
+	  <button type="submit" name="exit" class="btn btn-info mIn">Выход</button>
+		  </form></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div data-block="block-2" data-name="b1" id="b1">
+{% block content %}
+{% endblock %}
+</div>
+ <br /><br /><br />
+  <div class="fix navbar-fixed-bottom row-fluid">
+   <div class="footer">
+    <div class="kontakt">Контакты:
+	<a href="https://vk.com/id147661729" target="blank">ВК</a> | 
+	<a href="mailto:maks.zolotarev.88@mail.ru">E-Mail</a>
+	</div>
+   </div>
+  </div>
+ </body>
+</html>

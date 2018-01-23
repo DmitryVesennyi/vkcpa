@@ -1,0 +1,209 @@
+{% extends 'baze.html' %}
+{% load static %}
+{% block content %}
+<div class="container cntp">
+<br />
+ <div class="pull-left">
+  <a href="//vk.com/id{{ self_user.user_id }}" target="blank" title="Переход на страничку ВК">
+  <img src="{{ self_user.photo }}" class="img-circle" width="30" height="30" /></a>
+ </div>
+  <span class="lead">&nbsp;&nbsp;Здравствуйте {{ self_user.name }}!</span>
+<div class="clearfix"></div>
+ <div class="text-center">{% autoescape off %}{{ message }}{% endautoescape %}</div>
+
+{% if static_groups %}
+  <div class="row">
+   <div class="col-md-12">
+    <div class="b_rs">
+     <table class="table table-striped table-hover table-condensed">
+     <h3 class="cPh">Партнерский список</h3>
+      <tr class="info">
+       <th width="5%">№</th>
+       <th width="55%">Группа</th>
+       <th width="40%" class="text-center"><i class="fa fa-check" aria-hidden="true"></i> Состояние</th>
+      </tr>
+{% for group in static_groups %}
+      <tr>
+       <td>{{ forloop.counter }}</td>
+       <td class="gNm" title="{{ group.name }}">{{ group.name }}</td>
+       <td>
+{% if group.group_id in cap %}
+      <div class="btnVK">
+       <div class="vkV">
+        <div id="vk_groups_1{{ forloop.counter }}"></div>
+       </div>
+      </div>
+      <script>VK.Widgets.Group("vk_groups_1{{ forloop.counter }}", {mode: 1, width: "200", height: "200"}, {{ group.group_id }});</script>
+{% else %}
+      <div class="btnVK btnS">
+       <div class="vbS">
+	    <span><i class="fa fa-check" aria-hidden="true" style="color:#9bb0c4"></i> Вы подписаны</span>
+        <div id="vk_groups_1{{ forloop.counter }}"></div>
+       </div>
+      </div>
+{% endif %}      
+       </td>
+      </tr>
+{% endfor %} 
+     </table>
+    </div>
+   </div>
+  </div>
+{% endif %}
+
+{% if groups %}
+{% if not button %}
+ <p class="text-center">ВНИМАНИЕ! <b>Не обновляйте</b> страничку до нажатия кнопки "ПРОДОЛЖИТЬ", иначе список может измениться и появятся новые группы.</p>
+ {% endif %}
+  <form method="post" class="form-inline" name="call">
+{% csrf_token %}
+ <div class="row">
+  <div class="col-md-12">
+   <div class="b_rs">
+     <h3 class="cPh">Ваша группа</h3>
+    <div class="input-group awth">
+     <span class="input-group-addon" id="bad" role="button" data-content="Введите ссылку или ИД группы<br />Затем нажмите {% if button %}{{ button }}{% else %}Продолжить{% endif %}" data-toggle="popover" data-html="true"><i class="fa fa-question-circle-o fa-lg" aria-hidden="true"></i></span>
+{% for field in form %}
+{{ field }}
+{% endfor %}
+    </div><br />
+   </div>
+  </div>
+ </div>
+<br />
+ <div class="text-center">
+  <input type="submit" class="btn btn-lg btn-success awth" value={% if button %}{{ button }}{% else %}"Продолжить"{% endif %} onclick="showBody();return false;" />
+ </div>
+  <div class="row">
+   <div class="col-md-12">
+    <div class="b_rs">
+     <table class="table table-striped table-hover table-condensed">
+     <h3 class="cPh">Список групп</h3>
+      <tr class="info">
+       <th width="5%">№</th>
+       <th width="55%">Группа</th>
+       <th width="40%" class="text-center"><i class="fa fa-check" aria-hidden="true"></i> Состояние</th>
+      </tr>
+{% for group in groups %}
+      <tr>
+       <td>{{ forloop.counter }}</td>
+       <td class="gNm" title="{{ group.group_info.name }}">{{ group.name }}</td>
+       <td>
+{% if group.group_id in cap %}
+         <div class="btnVK">
+          <div class="vkV">
+           <div id="vk_groups_2{{ forloop.counter }}"></div>
+          </div>
+         </div>
+       <script>VK.Widgets.Group("vk_groups_2{{ forloop.counter }}", {mode: 1, width: "200", height: "200"}, {{ group.group_id }});</script>
+{% else %}
+      <div class="btnVK btnS">
+       <div class="vbS">
+	    <span><i class="fa fa-check" aria-hidden="true" style="color:#9bb0c4"></i> Вы подписаны</span>
+        <div id="vk_groups_2{{ forloop.counter }}"></div>
+       </div>
+      </div>
+{% endif %}       
+       </td>
+      </tr>
+{% endfor %}
+     </table>
+    </div>
+   </div>
+  </div>
+<br />
+ <div class="text-center">
+  <input type="submit" class="btn btn-lg btn-success awth" value={% if button %}{{ button }}{% else %}"Продолжить"{% endif %} onclick="showBody();return false;" />
+ </div>
+    <input type="hidden" name='uid' value={{ data_post.uid }} />
+    <input type="hidden" name="hash" value={{ data_post.hash }} />
+</form>
+{% endif %}
+
+{% if notentry %}
+ <form method="post" class="form-inline" name="call">
+{% csrf_token %}
+  <div class="row">
+   <div class="col-md-12">
+    <div class="b_rs">
+     <table class="table table-striped table-hover table-condensed">
+     <h3 class="cPh">Список групп</h3>
+      <tr class="info">
+       <th width="5%">№</th>
+       <th width="55%">Группа</th>
+       <th width="40%" class="text-center"><i class="fa fa-check" aria-hidden="true"></i> Состояние</th>
+      </tr>
+{% for group in notentry %}
+      <tr>
+       <td>{{ forloop.counter }}</td>
+       <td class="gNm" title="{{ group.name }}">{{ group.name }}</td>
+       <td>
+     <div class="btnVK">
+      <div class="vkV">
+       <div id="vk_groups_3{{ forloop.counter }}"></div>
+      </div>
+     </div>
+     <script>VK.Widgets.Group("vk_groups_3{{ forloop.counter }}", {mode: 1, width: "200", height: "200"}, {{ group.group_id }});</script>  
+       </td>
+      </tr>
+{% endfor %}                  
+     </table>
+    </div>
+   </div>
+  </div>
+<br />
+ <div class="text-center">
+  <input type="submit" class="btn btn-lg btn-success awth" value={% if button %}{{ button }}{% else %}"Продолжить"{% endif %} onclick="showBody();return false;" />
+ </div>
+ <div class="row">
+  <div class="col-md-12">
+   <div class="b_rs">
+     <h3 class="cPh">Ваша группа</h3>
+    <div class="input-group" style="width:80%;margin:0 10%;">
+     <span class="input-group-addon" id="bad" role="button" data-content="Введите ссылку или ИД группы<br />Затем нажмите {% if button %}{{ button }}{% else %}Продолжить{% endif %}" data-toggle="popover" data-html="true"><i class="fa fa-question-circle-o fa-lg" aria-hidden="true"></i></span>
+{% for field in form %}
+{{ field }}
+{% endfor %}
+    </div><br />
+   </div>
+  </div>
+ </div>
+    <input type="hidden" name='uid' value={{ data_post.uid }} />
+    <input type="hidden" name="hash" value={{ data_post.hash }} />
+ </form>
+{% endif %}
+
+ </div>
+
+ <div id="pause" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
+ <div class="modal-dialog">
+  <div class="modal-content">
+<div class=" bg-info text-center" style="border: 1px solid #ccc;margin:5px">
+ <div class="modal-header">
+	<h3 class="modal-title text-danger">-=Пауза=-</h3>
+ </div>
+ <div class="modal-body">
+<p class="lead text-center">Для уменьшения риска заморозки аккаунта пожалуйста подождите <span id="ost"></span> сек.</p>
+ </div>
+ <div class="modal-footer">
+  <div class=" text-center">
+  <img src="{% static 'img/loading.gif' %}" />
+  </div>
+ </div>
+</div>
+  </div>
+ </div>
+</div>  
+
+<script>
+	VK.Observer.subscribe("widgets.groups.joined", function f(){shMod();});
+function shMod(){
+	var randTm=getRand();
+	$('#pause').modal('show');
+	document.getElementById('ost').innerHTML=parseInt(randTm / 1000);
+	setTimeout(function(){hdMod()},randTm);
+}
+function hdMod(){$('#pause').modal('hide');} 
+function getRand(){return Math.random()*(20000-7000)+7000;}
+</script>
+{% endblock %}

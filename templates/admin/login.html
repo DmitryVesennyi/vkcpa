@@ -1,0 +1,57 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_static %}
+
+{% block extrastyle %}
+{{ block.super }}
+
+{% endblock %}
+{% block bodyclass %}{{ block.super }} login{% endblock %}
+{% block nav-global %}{% endblock %}
+{% block content_title %}{% endblock %}
+{% block breadcrumbs %}{% endblock %}
+{% block content %}
+{% if form.errors and not form.non_field_errors %}
+ <div class="alert alert-danger">
+{% if form.errors.items|length == 1 %}
+Исправьте ошибку
+{% else %}
+Исправьте ошибки
+{% endif %}
+</div>
+{% endif %}
+{% if form.non_field_errors %}
+{% for error in form.non_field_errors %}
+<p>{{ error }}</p>
+{% endfor %}
+{% endif %}
+
+<div id="content-main" class="container text-center">
+<div class="bxs">
+<b class="lead">АдминПанель</b>
+<form action="{{ app_path }}" method="post" id="login-form" class="form" role="form">
+{% csrf_token %}
+  <div class="form-group">
+{{ form.username.errors }}
+    <label for="id_username" class="required">Логин</label> 
+{{ form.username }}
+  </div>
+  <div class="form-group">
+{{ form.password.errors }}
+    <label for="id_password" class="required">Пароль</label>
+{{ form.password }}
+    <input class="form-control" type="hidden" name="next" value="{{ next }}" />
+  </div>
+{% url 'admin_password_reset' as password_reset_url %}
+{% if password_reset_url %}
+  <div class="password-reset-link">
+    <a href="{{ password_reset_url }}">Забыли логин или пароль?</a>
+  </div>
+{% endif %}
+  <div class="submit-row">
+	<input type="submit" class="btn btn-success lgbut" value="Войти" />
+  </div>
+</form>
+</div>
+<script>document.getElementById('id_username').focus()</script>
+</div>
+{% endblock %}

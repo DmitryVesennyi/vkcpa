@@ -1,0 +1,11 @@
+{% extends "admin/base_site.html" %}
+{% load i18n %}
+{% block title %}LogOut{% endblock %}
+{% block content_title %}<h1>Вы вышли</h1>{% endblock %}
+{% block breadcrumbs %}{% endblock %}
+{% block content %}
+<p class="lead text-center">
+ <a class="btn btn-success" href="//livsa.ru">На сайт</a>
+ <a class="btn btn-success" href="{% url 'admin:index' %}">Админка</a>
+</p>
+{% endblock %}

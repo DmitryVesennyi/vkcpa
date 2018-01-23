@@ -1,0 +1,12 @@
+{% if show %}
+<div class="text-right">
+{% if back %}
+<a class="btn btn-default btn-sm" href="{{ back.link }}">&lsaquo; Назад</a>
+{% endif %}
+{% for choice in choices %}
+{% if choice.link %}
+&nbsp;<a class="btn btn-default btn-sm" href="{{ choice.link }}">{% endif %}{{ choice.title }}{% if choice.link %}</a>
+{% endif %}
+{% endfor %}
+</div>
+{% endif %}

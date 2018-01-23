@@ -1,0 +1,14 @@
+{% load admin_list %}
+{% load i18n %}
+<div class="text-center">
+<ul class="pagination">
+{% if pagination_required %}
+{% for i in page_range %}
+<li>{% paginator_number cl i %}</li>
+{% endfor %}
+{% endif %}
+{% if cl.formset and cl.result_count %}
+<input type="submit" name="_save" class="btn btn-default" value="Сохранить"/>
+{% endif %}
+</ul>
+</div>

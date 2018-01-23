@@ -1,0 +1,14 @@
+{% extends "admin/change_form.html" %}
+{% load i18n %}
+
+{% block form_top %}
+{% if not is_popup %}
+ <p>Для начала, введите логин и пароль</p>
+{% else %}
+ <p>Введите логин и пароль</p>
+{% endif %}
+{% endblock %}
+
+{% block after_field_sets %}
+<script>document.getElementById("id_username").focus();</script>
+{% endblock %}

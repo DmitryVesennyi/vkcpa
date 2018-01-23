@@ -1,0 +1,244 @@
+{% extends 'baze.html' %}
+{% load static %}
+{% block content %}
+ <div class="container cntp">
+ <br />
+ <div class="text-right">
+  <a href="http://vk.com/id{{ user.user_id }}" target="blank" title="Переход на страничку ВК">
+  <img src="{{ user.photo }}" class="img-circle" width="30" height="30" /></a>
+  <a href="#changeGroup" class="btn btn-info bgvk" title="Смена группы">Поменять группу</a>
+ </div>
+ <div class="clear"></div>
+ <div class="text-center">
+  <h2>Здравствуйте {{ user.name }}!</h2>
+{% if messages %}
+   <div class="messages">
+{% for message in messages %}
+    <h3 class='error'>{{ message }}</h3>
+{% endfor %}
+   </div>
+{% endif %}
+ </div>
+{% if not discharged_groups %}
+ <div class="text-center">
+  <h3><small>Ваша группа:</small> <small class="text-danger"><b>{{ user_group.name }}</b></small></h3>
+{% if user_group.impression %}
+    <h3><small class="text-danger">На сегодня лимит исчерпан. Новые показы через 24 часа.</small></h3>
+{% endif %}
+ </div>
+  <div class="row">
+    <div class="col-md-6">
+ <div class="b_rs">
+     <h3 class="cPh">Партнерам</h3>
+     <span><b class="text-danger">* Хотите +100 подписчиков в день?</b></span><br />
+     <span><b class="text-danger">*</b> Пригласите 10 человек и напишите <a href='//vk.com/id147661729' target='blank'>СЮДА</a> - Вам дадут бонус.</span><br />
+	 <span><b class="text-danger">* Как приглашать смотрите <a href='/kak_popast/'>ТУТ</a></b></span>
+	 <br /><br />
+     <span><b class="text-danger">*</b> А самым ленивым предлагаем стать партнерами - подробнее <a href="{% url 'partneram' %}">ТУТ</a></span>
+ </div>
+ <div class="b_rs">
+     <h3 class="cPh">Статистика</h3>
+     <table class="table table-striped table-hover table-condensed tIf" id ="update-holder">
+      <tr>
+     <td><b>Позиция в списке:</b></td>
+	 <td>&nbsp;<b class="text-danger">{{ sort_position }}</b>
+	  <span class="qwr" data-toggle="popover" data-html="true" title="Позиция в списке" data-content='Позиция Вашей группы в списке<br /><div class="text-left"><b>Выпала</b>: группа выпала из списка<br /><b>Ожидает</b>: ожидает очереди за приглашенного</div>'>
+	   <i class="fa fa-question-circle-o fa-lg" aria-hidden="true"></i>
+	  </span>
+	 </td>
+      </tr>
+      <tr>
+     <td><b>Приглашенных:</b></td>
+	 <td>&nbsp;<b class="text-danger">{{ count_invited }}</b>
+	  <span class="qwr" data-toggle="popover" title="Количество приглашенных" data-content="Количество приглашенных Вами и прошедших в список участников за все время пиара группы">
+	   <i class="fa fa-question-circle-o fa-lg" aria-hidden="true"></i>
+	  </span>
+	 </td>
+      </tr>
+<!-- ifequal sort_position 'выпала' -->
+      <tr>
+     <td><b>Осталось кругов:</b></td>
+	 <td>&nbsp;<b class="text-danger">{{ user_group.queue }}</b>
+	  <b class="qwr" data-toggle="popover" title="Накоплено кругов" data-content="Количество кругов списка, которые засчитанны Вам за приглашенных и еще не пройдены">
+	   <i class="fa fa-question-circle-o fa-lg" aria-hidden="true"></i>
+	  </b>
+	 </td>
+      </tr>
+      <tr>
+     <td><b>Кругов за сутки:</b></td>
+	 <td>&nbsp;<b class="text-danger">{{ static_recommended }}</b>
+	  <span class="qwr" data-toggle="popover" title="Кругов за сутки" data-content="Общее количество кругов за предыдущие сутки">
+	   <i class="fa fa-question-circle-o fa-lg" aria-hidden="true"></i>
+	  </span>
+	 </td>
+      </tr>
+<!-- endifequal -->
+      <tr>
+     <td><b>Участников за сутки:</b></td>
+	 <td>&nbsp;<b class="text-danger">{{ static_count }}</b>
+	  <span class="qwr" data-toggle="popover" title="Участники за сутки" data-content="Общее количество участников за предыдущие сутки">
+	   <i class="fa fa-question-circle-o fa-lg" aria-hidden="true"></i>
+	  </span>
+	 </td>
+      </tr>
+     </table>
+ </div>
+ <div class="b_rs">
+     <h3 class="cPh">Ссылка для приглашений</h3>
+     <br />
+	   <div class="input-group">
+       <span class="input-group-addon" id="bad" data-toggle="popover" data-html="true" title="Ваша ссылка" data-content="Ваша персональная ссылка для приглашений новых участников" role="button"><i class="fa fa-question-circle-o fa-lg" aria-hidden="true"></i></span>
+	   <input id="res" onclick="this.select();" type="text" class="form-control" value="" aria-describedby="bad" readonly />
+      </div>
+     <br />
+	  <span><b class="text-danger">ВНИМАНИЕ!</b> Считается «приглашенным» только тот, кто попал в список (вступил в группы и добавил свою группу)</span>
+ </div>
+    </div>
+{% if groups %}
+    <div class="col-md-6" id="tabx_usser">
+ <div class="b_rs">
+     <h3 class="cPh">Список групп</h3>
+     <table class="table table-striped table-hover table-condensed" id ="update-holder">
+{% for group in groups %}
+      <tr id = "{{ group.sort_position }}">
+       <td width="5px">{{ forloop.counter }}</td>
+       <td class="gNm"><a href="http://vk.com/club{{ group.group_info.group_id }}" target="blank">{{ group.group_info.name }}</a></td>
+      </tr>
+{% endfor %}
+     </table>
+ </div>
+    </div>
+{% endif %}
+</div>
+
+
+
+{% else %}
+<div class="row">
+   <div class="col-md-12">
+   <h3 class="text-danger">Вы заблокированы, так как вышли из групп</h3>
+   <p class="lead">Вступите в группы из которых Вы вышли и нажмите кнопку "РАЗБАНИТЬ". <b>Обратите внимание</b>, что при повторном нарушении Вам придется пригласить нового участника и подписаться в весь текущий список групп.</p>
+ <div class="b_rs">
+    <table class="table table-striped table-hover table-condensed">
+     <h3 class="cPh">Список групп</h3>
+     <tr class="info">
+      <th width="5%">№</th>
+      <th width="55%">Группа</th>
+      <th width="40%" class="text-center"><i class="fa fa-check" aria-hidden="true"></i> Состояние</th>
+     </tr>
+{% for group in discharged_groups %}
+     <tr>
+      <td>{{ forloop.counter }}</td>
+      <td class="gNm" title="{{ group.name }}">{{ group.name }}</td>
+      <td>
+     <div class="btnVK">
+      <div class="vkV">
+       <div id="vk_groups_3{{ forloop.counter }}"></div>
+      </div>
+     </div>
+     <script>VK.Widgets.Group("vk_groups_3{{ forloop.counter }}", {mode: 1, width: "200", height: "200"}, {{ group.group_id }});</script>  
+      </td>
+     </tr>
+{% endfor %}                  
+    </table>
+ </div>
+
+   <br />
+    <form  method="post">
+{% csrf_token %}
+     <div class="text-center">
+      <input type="submit" class="btn btn-lg btn-success awth" value="РАЗБАНИТЬ" />
+      <input type="hidden" name='release' value='release' />
+     </div>
+    </form>
+   </div>
+  </div>	
+{% endif %}
+ </div>
+ 
+ <div class="modal fade changeGroup"> 
+ <div class="modal-dialog">
+  <div class="modal-content text-center" style="background:#f1f1f1">
+   <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">
+     <span aria-hidden="true">×</span><span class="sr-only">Закрыть</span>
+    </button>
+    <h2 class="modal-title text-danger">Внимание!</h2>
+   </div>
+   <div class="modal-body lead">
+	 <p>Вы собираетесь <b>поменять группу</b>.</p>
+	 <p>Обратите внимание, что накопленные круги за приглашенных Вами участников <b class="text-danger">аннулируются</b>!</p>
+	 <p>Рекомендуем <b>перед</b> сменой группы использовать ранее накопленные круги.</p>
+  </div>
+   <div class="modal-footer">
+     <form  action="{% url 'useroom' %}" method="post" class="text-center">
+{% csrf_token %}
+   <button class="btn btn-danger btnVK" type="submit" name="amend">Продолжить</button>
+   <button class="btn btn-default btnVK" data-dismiss="modal">Отменить</button>
+   <input type="hidden" name='change' value='change' />
+   <input type="hidden" name='uid' value={{ data_post.uid }} />
+   <input type="hidden" name="hash" value={{ data_post.hash }} />
+     </form>
+   </div>
+ </div>
+ </div>
+</div>
+
+ <div id="pause" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
+ <div class="modal-dialog">
+  <div class="modal-content">
+<div class=" bg-info text-center" style="border: 1px solid #ccc;margin:5px">
+ <div class="modal-header">
+	<h3 class="modal-title text-danger">-=Пауза=-</h3>
+ </div>
+ <div class="modal-body">
+<p class="lead text-center">Для уменьшения риска заморозки аккаунта пожалуйста подождите <span id="ost"></span> сек.</p>
+ </div>
+ <div class="modal-footer">
+  <div class=" text-center">
+  <img src="{% static 'img/loading.gif' %}" />
+  </div>
+ </div>
+</div>
+  </div>
+ </div>
+</div> 
+
+<script>
+function update(){update_holder=$("#update-holder");most=update_holder.find("tr:first");$.getJSON("/updates/"+most.attr('id')+"/",function(data){jQuery.each(data,function(){update_holder.prepend('<tr id="'+this.sort_position+'"<td>'+this.sort_position+'</td><td>'+this.group_info.name+'</td><td>'+this.group_info.group_id+'</td></tr>');$("#position").html(this.sort_position);});});$(document).ready(function(){setInterval("update()",40000);});}
+function load(){gapi.client.setApiKey('AIzaSyA6bEvKONFqIfGmb2dlbDY2kVRozI8Lhlw');gapi.client.load('urlshortener','v1',function(){var Url='{{ user.referals }}';var request = gapi.client.urlshortener.url.insert({'resource':{'longUrl': Url}});request.execute(function(response){if (response.id!=null){str=response.id;document.getElementById("res").value=str;}else{str="{{ user.referals }}";document.getElementById("res").value=str;};});});}
+window.onload = load;
+
+	VK.Observer.subscribe("widgets.groups.joined", function f(){shMod();});
+function shMod(){
+	var randTm=getRand();
+	$('#pause').modal('show');
+	document.getElementById('ost').innerHTML=parseInt(randTm / 1000);
+	setTimeout(function(){hdMod()},randTm);
+}
+function hdMod(){$('#pause').modal('hide');} 
+function getRand(){return Math.random()*(25000-14000)+14000;}
+/*
+function update(){
+	update_holder = $("#update-holder");
+	most = update_holder.find("tr:first");
+	$.getJSON("/updates/" + most.attr('id') + "/",
+ function(data){
+  jQuery.each(data,function(){
+   update_holder.prepend(
+' <tr id = "' + this.sort_position + '">' +
+'  <td>' + this.sort_position +'</td>' +
+'  <td>' + this.group_info.name + '</td>' +
+'  <td>' + this.group_info.group_id +'</td>' +
+' </tr>'
+   );
+  $("#position").html(this.sort_position);
+  });
+ });
+ $(document).ready(function(){
+  setInterval(update(),40000);
+ })
+}
+*/
+</script>
+{% endblock %}

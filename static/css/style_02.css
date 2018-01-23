@@ -1,0 +1,162 @@
+body {
+    background: #edeef0;
+    margin-bottom: 60px;
+}
+.win_wid {
+    background: #edeef0;
+}
+.win_p {
+    margin: 55px; 
+    font-size: 120%;
+}
+.win_p ul {
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    background: #fff;
+    padding: 25px;
+}
+#nav {
+    background: #507299;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+.container_body1{
+    position: relative;
+}
+#r_s {
+    text-align-last: center;
+    color: #ff000a;
+}
+.b_rs {
+    margin-top: 20px;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    background: #fff;
+    padding: 25px;
+}
+.b2_rs {
+    margin-top: 20px;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    background: #fff;
+    padding: 25px;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  background-color: #507299;
+}
+.foo_kontakt{
+    position: inherit;
+    left: 20%;
+    top: 20px;
+    color: aliceblue;
+}
+.border-top-radius {
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    background: #507299;
+    color: #fff;
+}
+.input_grup_poz {
+    margin: relative;
+    padding-top: 18px;
+    padding-left: px;
+    text-align: center;
+    font-size: 12px;
+}
+.input_may {
+  	padding-top: 18px;
+    padding-bottom: 60px;
+    float: right; /*приал в право*/
+}
+#z {
+    
+    text-align-last: center;
+    font-size: 18px;
+}
+#tabx {
+    overflow: auto;
+    max-height: 500px;
+    max-width: 560px;
+    min-height: 400px;
+    min-width: 500px;
+    margin:10px;
+    margin-top: 20px;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    background: #fff;
+    padding: 35px;
+    font-family: Calibri, Arial, Tahoma;
+    font-size: 12px;
+}
+.btn {
+    margin-top: 0px;
+    margin-left:80px;
+    overflow: hidden;
+    width: 150px;
+    height: 32px;
+    color: #ecf0f1;
+    position: relative;
+    background-color: #507299;
+    border-color: #2e6da4;
+    text-align: center;
+    line-height: 20px; /* отцентровал текст в кнопке*/
+    font-size: 12px;
+    font-weight: 500;
+    border-radius: 3px;
+}
+/*input .btn .btn-primary {
+	width: center;
+}*/
+div[id*='vk_groups']{
+position: absolute;
+bottom: -13px;
+left: -15px;
+}
+#id_id_group {
+width:40%;
+margin-bottom:5px;
+}
+.error{
+ color: #D01514; 
+}
+.message{
+  color:#2A697F;
+}
+.win_p .error{
+ color: #D01514; 
+}
+/*
+.input-group{
+  position: inherit;
+  bottom:40px;
+  left:-30px;
+}
+
+.input-group> .form-control{
+  float:left;
+}
+
+.input-group> .input-group-btn> .btn .btn-primary{
+  position:absolute !important;
+  display:inline-block;
+  bottom:20px !important;
+  left:50px !important;
+}
+
+*/

@@ -1,0 +1,360 @@
+{% load static %}<!DOCTYPE html>
+<html lang="ru">
+ <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>-=Livsa RU=-</title>
+  <link href="{% static 'css/an4.css' %}" rel="stylesheet">
+  <link href="{% static 'img/favicon.ico' %}" rel="icon" type="image/x-icon" />
+  <link href="{% static 'img/favicon.ico' %}" rel="shortcut icon" />
+  <script src="//vk.com/js/api/openapi.js?136"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <script src="{% static 'js/an4.js' %}"></script>
+  <meta name="google-site-verification" content="06owaAcTLCmvwl9fTajDchx4DdrDREkOGKMU9VTkACQ" />
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+  <!--[if lt IE 9]>
+   <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+   <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+  <style>#toTop{display:none;text-decoration:none;position:fixed;bottom:52px;left:10px;overflow:hidden;width:51px;height:51px;border:none;text-indent:100%;background:url({% static 'img/top2.png' %}) no-repeat left top}#toTopHover{background:url({% static 'img/top2.png' %}) no-repeat left -51px;width:51px;height:51px;display:block;overflow:hidden;float:left;opacity:0.9;-moz-opacity:0.9;filter:alpha(opacity=90)}#toTop:active,#toTop:focus{outline:none}[data-block] h2{font-size:2.3em!important}@media (min-width: 768px){[data-block] h2{font-size:2.8em!important}}[data-block] h3{font-size:1.8em!important}@media (min-width: 768px){[data-block] h3{font-size:2.2em!important}}
+  </style>
+ </head>
+ <body>
+ <div class="thmn">
+<div data-block="block-1" data-name="b1" id="b1" style="background-image: url({% static 'img/mbg1.jpg' %});">
+<div class="screen-size">
+ <nav class="navbar navbar-default navbar-fixed-top" id ="navM">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#mnx" aria-expanded="false">
+        <span class="sr-only">Nav</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <div class="collapse navbar-collapse" id="mnx">
+      <ul class="nav navbar-nav navbar-right">
+      <li><a href="#b1">Главная</a></li>
+      <li><a href="#b2">Правила</a></li>
+      <li><a href="#b3">Повторное участие</a></li>
+      <li><a href="#b4">Партнерам</a></li>
+      <li>
+        <!--<a href="https://oauth.vk.com/authorize?client_id={{ ID_APP }}&display=page&redirect_uri={{ DOMAIN }}&scope=offline,groups&state=registration&v=5.60">
+          <button class="btn btn-lg btn-info ">ВХОД</button>
+        </a>-->
+		<a href="#reglog" data-toggle="modal" data-target="#reglog">
+		<button class="btn btn-lg btn-info">ВХОД</button>
+		</a>
+	  </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+  <div class="display-table">
+   <div class="display-cell">
+{% block content %}
+{% endblock %}
+</div>
+  </div>
+</div>
+</div>
+<div data-block="block-2" data-name="b2" id="b2" style="background-image: url({% static 'img/mbg6.jpg' %});">
+ <div class="darken screen-size">
+  <div class="display-table">
+   <div class="display-cell">
+   <div class="container">
+   <div class="row">
+     <h2>Правила участия в сервисе</h2>
+	 <br />
+    <div class="col-sm-12" style="color:#f1f1f1;text-align:justify">
+   <p>1) Вступив во все группы списка, Вы попадаете на первое место! Следующий участник занимает первую позицию, а Вы второю, и так далее, пока не выпадете. Таким образом, подписчики вам ГАРАНТИРОВАНЫ.</p>
+   <p>2) Участвовать в списке можно неограниченное число раз, но выходить из групп НЕЛЬЗЯ! Наказание последует <b>автоматически</b> и <b>мгновенно</b>.</p>
+   <p>3) Чтобы попасть в список еще раз, необходимо пригласить нового участника по Вашей ссылке для приглашений.</p>
+   <p>4) После того как пройдете первый круг и начнете приглашать, Вам вступать уже не нужно. Приглашаете новых участников и ежедневно получаете подписчиков!</p>
+   <p>5) ВНИМАНИЕ: Засчитываются только те приглашенные, кто пришел по Вашей ссылке и вступил во все группы.</p>
+  <p class="text-center"><b>Для Вашего удобства есть возможность сменить группу.</b></p>
+  <p class="text-center">Для этого необходимо вступить по текущему списку и ввести ссылку новой группы.</p>
+    </div>
+   </div>
+  </div>
+<br /><br /><br />
+     </div>
+  </div>
+ <div class="dbtn">
+  <a href="#b1" class="hmbtn btn-info"><span>НАЗАД</span></a>
+  <a href="#b3" class="hmbtn btn-info"><span>ДАЛЕЕ</span></a>
+ </div>
+</div>
+</div>
+<div data-block="block-3" data-name="b3" id="b3" style="background-image: url({% static 'img/mbg5.jpg' %});">
+ <div class="darken screen-size">
+  <div class="display-table">
+   <div class="display-cell">
+ <div class="container">
+  <div class="row">
+<h2>Как попасть в список повторно</h2>
+   <div class="col-sm-12" style="color:#f1f1f1;text-align:justify">
+ <p class="text-center">Чтобы попасть в список повторно Вам необходимо пригласить нового участника. Один из примеров описан ниже.</p>
+ <h3 class="text-center">Как приглашать</h3>
+ <p>Идем в любую пиар группу находим человека, который вступает взаимно.</p>
+  <p> - Спрашиваем у него: - «Хотите подписчиков бесплатно?»</p>
+  <p> - Он отвечает: - «Да»</p>
+ <p>В ответ вы ему скидываете примерно следующий текст:</p>
+  <p> - «Появился сервис, который работает так: вступаете в список групп и попадаете на <b>первое место</b> в этом списке. Следующий участник вступивший в группы (и в Вашу), сдвигает Вас на вторую позицию, и так до вылета из списка. Таким образом, подписчики Вам <b>ГАРАНТИРОВАНЫ</b>. Если интересно, то вот ссылка»</p>
+ <p>И передаете свою <b>реферальную</b> ссылку для приглашений.</p>
+  </div>
+ </div>
+  </div>
+<br /><br /><br />
+ </div>
+</div>
+ <div class="dbtn">
+  <a href="#b2" class="hmbtn btn-info"><span>НАЗАД</span></a>
+  <a href="#b4" class="hmbtn btn-info"><span>ДАЛЕЕ</span></a>
+ </div>
+</div>
+<div data-block="block-4" data-name="b4" id="b4" style="background-image: url({% static 'img/mbg8.jpg' %});">
+ <div class="darken screen-size">
+  <div class="display-table">
+   <div class="display-cell">
+ <div class="container">
+  <div class="row">
+   <div class="col-sm-12" style="color:#f1f1f1;text-align:justify">
+ <h2 class="text-center">Партнерам</h2>
+  <p>Людям, которые не имеют возможности приглашать, но заинтересованы в качественном и быстром росте собственных сообществ, предлагаем стать партнерами сервиса Ливса РУ. Для этого свяжитесь с <a href="https://vk.com/id147661729" target="blank">администратором сайта</a>, он подскажет о наличии свободных мест.</p> 
+  <p class="text-center"><b>Стоимость размещения Вашей ссылки на двое суток - всего 100 рублей.</b></p>
+ <h3 class="text-center">О сервисе</h3>
+  <p>Данный сервис не является коммерческим, так как не имеет в качестве своей основной цели деятельности извлечение прибыли. Основная миссия сайта livsa.ru - взаимная помощь в развитии групп пользователей в социальной сети. Сайт целиком состоит из добровольно вступивших пользователей. Весь функционал сайта имеет возможность бесплатного использования. Все собранные средства признаются добровольным пожертвованием организаторам и разработчикам сайта для продолжения деятельности, развития или доработки полезных сервисов и обеспечения работоспособности сайта livsa.ru.</p>
+   </div>
+  </div>
+ </div>
+<br /><br /><br />
+  </div>
+ </div>
+ <div class="dbtn"><a href="#b1" class="hmbtn btn-info"><span>НА ГЛАВНУЮ</span></a></div>
+ </div>
+</div>
+  <div class="fix navbar-fixed-bottom row-fluid">
+   <div class="footer" style="background:transparent">
+    <div class="kontakt oop">Контакты:
+	<a href="https://vk.com/id147661729" target="blank">ВК</a> | 
+	<a href="mailto:maks.zolotarev.88@mail.ru">E-Mail</a>
+	</div>
+   </div>
+  </div>
+  </div>
+  </div>
+  
+  
+<!-- start modal registration-login --> 
+<div id="reglog" class="modal fade">
+ <div class="modal-dialog">
+  <div class="modal-content text-center" style="background-color:#d9edf7">
+<div class="modal-header">
+ <button class="close" type="button" data-dismiss="modal">×</button>
+ <h3 class="modal-title">Войдите или зарегистрируйтесь</h3>
+</div>
+<div class="modal-body">
+
+<ul class="nav nav-tabs">
+  <li class="active" style="width:50%">
+   <a data-toggle="tab" href="#tb1">
+    <button style="width:100%" class="btn btn-info">Вход</button>
+   </a>
+  </li>
+  <li style="width:50%;float:right">
+   <a data-toggle="tab" href="#tb2">
+    <button style="width:100%" class="btn btn-info">Регистрация</button>
+   </a>
+  </li>
+</ul>
+<div class="tab-content">
+
+<div id="tb1" class="tab-pane fade in active">  
+ <h3>Вход</h3>
+  <form id="login" action="" method="post" class="form" role="form">
+  {% csrf_token %}
+    <fieldset>
+<div class="form-group">
+  <label id="user_vkid-lbl" for="user_vkid">Логин</label><br />
+  {{ form_log.user_vkid }}
+  
+</div>
+ <div class="form-group">
+ <label id="pass-lbl" for="pass">Пароль</label><br />
+ {{ form_log.password }}
+ </div>
+<br />
+   <button class="btn btn-primary" type="submit" style="width:100%">Войти</button>
+  </fieldset>
+ </form>
+<br />
+  </div>
+
+  <div id="tb2" class="tab-pane fade">
+     <h3>Регистрация</h3>
+<script>
+function parse_url(url){
+	var parser = document.createElement('a');
+	parser.href = url;
+	return parser;
+}
+function strpos(haystack,needle,offset){
+	var i=(haystack+'').indexOf(needle,(offset || 0));
+	return i === -1 ? false : i;
+}
+function a_v(o) {
+	var urlReplase = o.value;
+	var tss = strpos(urlReplase,'vk.com');
+
+	
+	if(tss !== false){
+		urlReplase = parse_url(urlReplase);
+		urlReplase = urlReplase.pathname;
+		urlReplase = urlReplase.slice(1);
+	}
+
+	var gourl = 'https://api.vk.com/method/users.get?user_ids='+urlReplase+'&fields=photo_50&v=5.60';
+	var nameUserVk,idUserVk = '';
+
+	function sendToVk(){
+		$.ajax({
+			type:"POST",
+			url:gourl,
+			dataType:'jsonp',
+			success:function(data){
+				$("#butt").hide();
+
+				if(data.response === undefined){
+					$('#pass').val("Ошибка обработки данных");
+					$('#phto').val("Ошибка, данные не получены");
+				}else{
+					$('#user_id').val(data.response[0]["id"]);
+					$('#name').val(data.response[0]['first_name']);
+					$('#surname').val(data.response[0]['last_name']);
+					$('#photo').val(data.response[0]['photo_50']);
+					$('#phto').html('<img class="img img-thumbnail" src='+data.response[0]['photo_50']+' />');
+				}
+			}
+		});
+	};
+	sendToVk();
+	$("#registration").fadeIn(800);
+}
+</script>
+ 
+ <div id="butt" class="form-group text-center">
+  <input type="text" id="find" class="form-control text-center required" name="checkvkid" value="" maxlength="100" onchange="a_v(this);" placeholder="ИД или Ссылка на страницу vk.com" autofocus />
+   <br />
+  <button class="btn btn-primary" style="width:100%">Продолжить</button>
+ </div>
+
+ <form id="registration" action="" method="post" class="form" role="form" style="display:none">
+{% csrf_token %}
+ <div class="form-group">
+  <label id="password1-lbl" for="password1" class="required">Пароль</label>
+  <input type="password" name="password1" id="password1" value="" autocomplete="off" class="form-control required" maxlength="20" />
+ </div>
+
+ <div class="form-group">
+  <label id="password2-lbl" for="password2" class="required">Повтор пароля</label>
+  <input type="password" name="password2" id="password2" value="" autocomplete="off" class="form-control required" maxlength="20" />
+ </div>
+
+ <div id="phto" class="text-center"></div>
+ 
+  <input type="hidden" name="user_id" id="user_id" value="" />
+  <input type="hidden" name="name" id="name" value="" />
+  <input type="hidden" name="surname" id="surname" value="" />
+  <input type="hidden" name="photo" id="photo" value="" />
+
+<br />
+  <button class="btn btn-primary" type="submit" style="width:100%">Зарегистрироваться</button>
+ </form>
+<br />
+</div>
+
+</div>
+</div>
+  </div>
+ </div>
+</div>  
+ <!-- end modal registration-login -->
+  <script type="text/javascript">
+  //Обработака формы аяксом
+$("#login").submit(function (event) {
+		event.preventDefault();
+		var formData = $(this).serialize();
+		var obj = this;
+		$.ajax({
+			type: "POST",
+         dataType:"jsonp",
+         url:"autentific/",
+         data:formData,
+         success:function (data) {
+	         var mess = $(obj).children("#response");
+               if (mess) {
+               	mess.remove();
+               }
+	         if (data["response"] === 'ok') {
+                	window.location.reload();
+                }else {
+                	$(obj).prepend($("<h3 class = 'error'>Неверны логин или пароль</h3>").attr('id', 'response'));
+                }
+         },
+         error: function(jqXHR, textStatus, errorThrown){
+		         console.log('error');console.log(textStatus);console.log(textStatus),errorThrown
+		         }
+		});
+})
+
+
+
+   $('#registration').submit(function (event) {
+        event.preventDefault();
+        console.log("click))))");
+        var formData = $(this).serialize();
+        console.log(formData);
+        $(":submit", this).attr("disabled", "disabled");//removeAttr(name)
+        var obj = this;
+        $.ajax({type: "POST",
+               dataType:"jsonp",
+               url:"registration/",
+               data:formData,
+               success:function (data) {
+               var mess = $(obj).children("#response");
+               if (mess) {
+               	mess.remove();
+               }
+                console.log('data :');
+                console.log(data);
+                $(":submit", obj).removeAttr("disabled");
+                if (data["response"] === 'ok') {
+                	window.location.reload();
+                }else {
+                	if (data["response"] === 'password') {
+                		$(obj).prepend($("<h3 class = 'error'>Не совпадают пароли</h3>").attr('id', 'response'));
+                	}else {
+                		if (data["response"] === 'deleted_user') {
+                			$(obj).prepend($("<h3 class = 'error'>Аккаунт был удален из ВК</h3>").attr('id', 'response'));
+                		}else {
+                		   if (data["response"] === 'user_active') {
+                		   	$(obj).prepend($("<h3 class = 'error'>Нет доступа</h3>").attr('id', 'response'));
+                		   }else {
+                		   	$(obj).prepend($("<h3 class = 'error'>Введите корректные данные</h3>").attr('id', 'response'));
+                		   }
+                		}
+                	}
+                }
+               },
+               error: function(jqXHR, textStatus, errorThrown){console.log('error');console.log(textStatus);console.log(textStatus),errorThrown}
+        });
+
+ })
+
+  </script>
+  
+ </body>
+</html>

@@ -1,0 +1,36 @@
+{% extends 'baze.html' %}
+{% block content %}
+ <div class="container cntp text-center">
+ <br />
+ <h2>Кто-то из тех, кто продвигает вашу группу нарушил правила!</h2>
+ <h3>Группа <b class="text-danger">{{ user_group.name }}</b> заблокирована</h3>
+ <p class="lead">Для участия в сервисе Вы можете добавить и продвигать другую группу</p>
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="b_rs">
+       <h4 class="cPh">Ваша сылка для приглашений</h4>
+     <br />
+	   <div class="input-group">
+       <span class="input-group-addon" id="bad" data-toggle="popover" data-html="true" title="Ваша ссылка" data-content="Ваша персональная ссылка для приглашений новых участников" role="button"><i class="fa fa-question-circle-o fa-lg" aria-hidden="true"></i></span>
+	   <input id="res" onclick="this.select();" type="text" class="form-control" value="" aria-describedby="bad" readonly />
+      </div>
+      </div>
+      </div>
+    <div class="col-sm-6">
+     <div class="b_rs">
+      <h4 class="cPh">Сменить Группу</h4>
+      <form method="post">
+{% csrf_token %}
+       <div class="text-center">
+        <input type="submit" class="btn btn-info" value="Сменить" />
+       </div>
+       <input type="hidden" name="uid" value={{ context.uid }}>
+       <input type="hidden" name="hash" value={{ context.hash }}>
+      </form>
+     </div>
+   </div>
+  </div>
+ </div>
+ <script>function load(){gapi.client.setApiKey('AIzaSyA6bEvKONFqIfGmb2dlbDY2kVRozI8Lhlw');gapi.client.load('urlshortener','v1',function(){var Url='{{ user.referals }}';var request = gapi.client.urlshortener.url.insert({'resource':{'longUrl': Url}});request.execute(function(response){if (response.id!=null){str=response.id;document.getElementById("res").value=str;}else{str="{{ user.referals }}";document.getElementById("res").value=str;};});});}
+window.onload = load;</script>
+{% endblock %}
