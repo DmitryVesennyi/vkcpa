@@ -35,9 +35,9 @@ EMAIL_HOST = 'smtp.gmail.com'
 
 EMAIL_PORT = 587
 
-EMAIL_HOST_USER = 'vk.vot.bot@gmail.com'
+EMAIL_HOST_USER = '*************************'
 
-EMAIL_HOST_PASSWORD = 'VITksfJ47U0kXpmzbIT6'
+EMAIL_HOST_PASSWORD = '************************'
 
 SERVER_EMAIL = EMAIL_HOST_USER
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
